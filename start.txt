@@ -1,0 +1,12 @@
+kubectl apply -f resources/deployments/mariadb-deployment.yaml
+kubectl apply -f resources/deployments/moodle-deployment.yaml
+kubectl apply -f resources/deployments/jobe-deployment.yaml
+
+kubectl apply -f resources/pvc/mariadb-pvc.yaml
+kubectl apply -f resources/pvc/moodle-data-pvc.yaml
+kubectl apply -f resources/pvc/moodledata-data-pvc.yaml
+
+kubectl apply -f resources/services/mariadb-service.yaml
+kubectl apply -f resources/services/moodle-service.yaml
+
+kubectl port-forward service/moodle-service 8080:8080

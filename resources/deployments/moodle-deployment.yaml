@@ -17,7 +17,7 @@ spec:
           image: bitnami/moodle:4.1
           env:
             - name: MOODLE_DATABASE_HOST
-              value: mariadb
+              value: mariadb-service
             - name: MOODLE_DATABASE_PORT_NUMBER
               value: "3306"
             - name: MOODLE_DATABASE_USER
@@ -31,8 +31,9 @@ spec:
             - name: MOODLE_LANG
               value: ru
           ports:
-            - containerPort: 8080
-            - containerPort: 8443
+            - name: http
+              containerPort: 8080
+              containerPort: 8443
           volumeMounts:
             - name: moodle-data
               mountPath: /bitnami/moodle
