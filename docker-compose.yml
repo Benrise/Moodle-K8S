@@ -33,8 +33,6 @@ services:
       - 'moodledata_data:/bitnami/moodledata'
     depends_on:
       - mariadb
-    links:
-      - mariadb
     container_name: moodle
   jobe:
     build:
