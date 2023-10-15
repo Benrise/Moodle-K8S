@@ -31,9 +31,12 @@ spec:
             - name: MOODLE_LANG
               value: ru
           ports:
-            - name: http
-              containerPort: 8080
-              containerPort: 8443
+            - containerPort: 8080
+              hostPort: 80
+              protocol: TCP
+            - containerPort: 8443
+              hostPort: 443
+              protocol: TCP
           volumeMounts:
             - name: moodle-data
               mountPath: /bitnami/moodle

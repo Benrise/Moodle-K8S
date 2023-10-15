@@ -6,7 +6,10 @@ spec:
   selector:
     app: moodle
   ports:
-    - name: http
-      protocol: TCP
-      port: 8080
+    - name: "80"
+      port: 80
       targetPort: 8080
+    - name: "443"
+      port: 443
+      targetPort: 8443
+  type: NodePort
