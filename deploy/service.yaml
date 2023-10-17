@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jobe-service
+spec:
+  selector:
+    app: jobe
+  ports:
+    - name: "4000"
+      port: 4000
+      targetPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moodle-service
+spec:
+  selector:
+    app: moodle
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8080
+    - name: "443"
+      port: 443
+      targetPort: 8443
+  type: NodePort
