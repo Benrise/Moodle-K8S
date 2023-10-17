@@ -24,10 +24,10 @@ kubectl delete svc --all
 --- Helm Chart  ---
 
 Запуск:
-helm install app moodle-helm
+helm install app-dev moodle-helm
 
 Сброс:
-helm delete app moodle-helm
+helm delete app-dev
 
 
 --- Авторизация ---
