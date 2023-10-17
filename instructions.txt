@@ -30,6 +30,18 @@ helm install app-dev moodle-helm
 helm delete app-dev
 
 
+--- Доступ к сайту ---
+
+Для Kubernetes и Helm Chart:
+kubectl get svc 
+moodle-service -> PORT(S) -> 80:ХХХХХ
+
+localhost:XXXXX
+
+Для Docker Compose:
+
+localhost
+
 --- Авторизация ---
 
 login: user
