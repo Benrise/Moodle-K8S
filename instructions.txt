@@ -1,3 +1,9 @@
+--- ПО --
+
+Docker
+Windows WSL
+Helm
+
 --- Старт ---
 
 kubectl apply -f deploy/deployment.yaml
