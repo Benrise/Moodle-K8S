@@ -12,9 +12,9 @@ Helm
 --- Kubernetes ---
 
 Запуск:
-kubectl apply -f deploy/deployment.yaml
-kubectl apply -f deploy/pvc.yaml
-kubectl apply -f deploy/service.yaml
+kubectl apply -f deployment.yaml
+kubectl apply -f pvc.yaml
+kubectl apply -f service.yaml
 
 Сброс:
 kubectl delete deployment --all
@@ -24,7 +24,7 @@ kubectl delete svc --all
 --- Helm Chart  ---
 
 Запуск:
-helm install app-dev moodle-helm
+helm install app-dev ./
 
 Сброс:
 helm delete app-dev
@@ -57,7 +57,9 @@ password: bitnami
 
 --- Настройка CodeRunner ---
 
-1. Сервер Jobe необходимо установить значение на jobe-service:4000.
+
+Администрирование -> Плагины -> Обзор плагинов -> CodeRunner:
+1. Сервер Jobe необходимо установить значение на jobe-service:4000 или jobe (в случае docker-compose).
 2. Сохранить изменения.
 
 Далее:
