@@ -1,0 +1,12 @@
+apiVersion: v2
+name: Moodle-Helm
+description: Moodle Helm chart for K8S
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - moodle
+  - mariadb
+  - jobe
+

@@ -1,0 +1,23 @@
+
+deployment:
+  moodle:
+    replicas: 1
+    image: bitnami/moodle:4.1
+  jobe:
+    replicas: 1
+    image: trampgeek/jobeinabox
+  db:
+    replicas: 1 
+    image: bitnami/mariadb:11.1
+
+services:
+  moodle:
+    replicas: 1
+    image: bitnami/moodle:4.1
+  jobe:
+    replicas: 1
+    image: trampgeek/jobeinabox
+  db:
+    replicas: 1 
+    image: bitnami/mariadb:11.1
+

@@ -4,17 +4,31 @@ Docker
 Windows WSL
 Helm
 
---- Старт ---
 
+--- Docker Compose --
+
+
+
+--- Kubernetes ---
+
+Запуск:
 kubectl apply -f deploy/deployment.yaml
 kubectl apply -f deploy/pvc.yaml
 kubectl apply -f deploy/service.yaml
 
---- Сброс ---
-
+Сброс:
 kubectl delete deployment --all
 kubectl delete pvc --all
 kubectl delete svc --all
+
+--- Helm Chart  ---
+
+Запуск:
+helm install app moodle-helm
+
+Сброс:
+helm delete app moodle-helm
+
 
 --- Авторизация ---
 

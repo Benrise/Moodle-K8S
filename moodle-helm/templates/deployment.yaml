@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobe-deployment
+spec:
+  replicas: {{ .Values.deployment.jobe.replicas }}
+  selector:
+    matchLabels:
+      app: jobe
+  template:
+    metadata:
+      labels:
+        app: jobe
+    spec:
+      containers:
+        - name: jobe
+          image: {{ .Values.deployment.jobe.image }}
+          env:
+            - name: TZ
+              value: Europe/Moscow
+          ports:
+            - containerPort: 80
+              hostPort: 4000
+              protocol: TCP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deployment
+spec:
+  replicas: {{ .Values.deployment.db.replicas }}
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+        - name: mariadb
+          image: {{ .Values.deployment.db.image }}
+          env:
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: MARIADB_USER
+              value: bn_moodle
+            - name: MARIADB_DATABASE
+              value: bitnami_moodle
+            - name: MARIADB_CHARACTER_SET
+              value: utf8mb4
+            - name: MARIADB_COLLATE
+              value: utf8mb4_unicode_ci
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mariadb-data
+              mountPath: /bitnami/mariadb
+      volumes:
+        - name: mariadb-data
+          persistentVolumeClaim:
+            claimName: mariadb-pvc
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodle-deployment
+spec:
+  replicas: {{ .Values.deployment.moodle.replicas }}
+  selector:
+    matchLabels:
+      app: moodle
+  template:
+    metadata:
+      labels:
+        app: moodle
+    spec:
+      containers:
+        - name: moodle
+          image: {{ .Values.deployment.moodle.image }}
+          env:
+            - name: MOODLE_DATABASE_HOST
+              value: mariadb-service
+            - name: MOODLE_DATABASE_PORT_NUMBER
+              value: "3306"
+            - name: MOODLE_DATABASE_USER
+              value: bn_moodle
+            - name: MOODLE_DATABASE_NAME
+              value: bitnami_moodle
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: BITNAMI_DEBUG
+              value: "true"
+            - name: MOODLE_LANG
+              value: ru
+          ports:
+            - containerPort: 8080
+              hostPort: 80
+              protocol: TCP
+            - containerPort: 8443
+              hostPort: 443
+              protocol: TCP
+          volumeMounts:
+            - name: moodle-data
+              mountPath: /bitnami/moodle
+            - name: moodledata-data
+              mountPath: /bitnami/moodledata
+      volumes:
+        - name: moodle-data
+          persistentVolumeClaim:
+            claimName: moodle-data-pvc
+        - name: moodledata-data
+          persistentVolumeClaim:
+            claimName: moodledata-data-pvc
+
