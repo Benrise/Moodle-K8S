@@ -1,3 +1,13 @@
+# LMS Moodle + CodeRunner + Docker/K8S/Helm
+
+Реализация с помощью:
+1. Docker Compose
+2. Kubernetes
+3. Helm Chart
+
+
+
+
 ## Необходимое ПО
 
 * Docker
