@@ -7,6 +7,11 @@ Helm
 
 --- Docker Compose --
 
+Запуск:
+docker compose up -d --build
+
+Сброс:
+docker compose down
 
 
 --- Kubernetes ---
@@ -20,6 +25,7 @@ kubectl apply -f service.yaml
 kubectl delete deployment --all
 kubectl delete pvc --all
 kubectl delete svc --all
+
 
 --- Helm Chart  ---
 
@@ -42,10 +48,12 @@ localhost:XXXXX
 
 localhost
 
+
 --- Авторизация ---
 
 login: user
 password: bitnami
+
 
 --- Установка CodeRunner ---
 
@@ -55,8 +63,8 @@ password: bitnami
 
 Закончить установку плагином кнопкой "Обновить Moodle"
 
---- Настройка CodeRunner ---
 
+--- Настройка CodeRunner ---
 
 Администрирование -> Плагины -> Обзор плагинов -> CodeRunner:
 1. Сервер Jobe необходимо установить значение на jobe-service:4000 или jobe (в случае docker-compose).
@@ -67,6 +75,7 @@ password: bitnami
 
 1. В списке заблокированных хостов cURL стереть 10.0.0.0/8.
 2. В списке разрешенных портов сURL внести порты 8080 и 4000.
+
 
 --- Создание курса и тестирование работы ---
 
